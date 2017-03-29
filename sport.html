@@ -1,0 +1,100 @@
+<!doctype html>
+<html amp lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AMP News</title>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style>
+    html {
+        background: #f9f9f9;
+    }
+    
+    body {
+        font-family: "Fira Sans", Helvetica, Arial;
+    }
+    
+    .container {
+        width: 405px;
+        margin: 0 auto;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+    }
+    
+    .head {
+        padding: 10px 0;
+        position: fixed;
+        margin: 0 auto;
+        text-align: center;
+        z-index: 99999;
+        background: #fff;
+    }
+    
+    .news {
+        padding: 80px 0 0 0;
+    }
+    
+    .story {
+        background: #fff;
+        width: 380px;
+        min-height: 290px;
+        margin: 20px 10px;
+        overflow: hidden;
+        border: 1px solid #f9f9f9;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+    }
+    
+    .img {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        display: block;
+    }
+    
+    .headline {
+        font-size: 17px;
+        line-height: 19px;
+        font-weight: 800;
+        padding: 20px;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #281e1e;
+    }
+    
+    a:hover {
+        text-decoration: none;
+        color: #ec1a2e;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="head"><img src="independent_logo.png" /></div>
+        <div class="news">
+            <amp-list width="auto" layout="fixed-height" items="articles" src="https://www.independent.co.uk/api/v1/12791/json" height="3400px">
+                <template type="amp-mustache">
+                    <div class="story">
+                        <div class="img">
+                            {{#video}}
+                            <amp-img class="video" id="{{video.id}}" src="{{video.thumbnail}}" layout="fill"></amp-img>
+                            {{/video}} {{^video}} {{#image}}
+                            <amp-img src="{{image.thumbnail}}" layout="fill"> </amp-img>
+                            {{/image}} {{/video}}
+                        </div>
+                        <div class="headline">
+                            <a href="{{url}}">{{short_headline}}</a>
+                        </div>
+                    </div>
+                </template>
+            </amp-list>
+        </div>
+    </div>
+</body>
+
+</html>
